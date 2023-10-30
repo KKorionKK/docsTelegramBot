@@ -39,10 +39,10 @@ async def json_message_handler(message: types.Message):
             result = await db.get_aggregation(group_type, dt_from, dt_upto)
             return await message.answer(json.dumps(result))
         except AttributeError as e:
-            print(e)
+            logging.warning(e)
             return await message.reply(help_error_message)
     except json.JSONDecodeError as e:
-        print(e)
+        logging.warning(e)
         return await message.reply(help_error_message)
 
 
